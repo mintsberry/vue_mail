@@ -3,7 +3,9 @@
     <!-- Header Section -->
     <mt-header fixed title="商店"></mt-header>
     <!-- Router Section -->
-    测试
+    <transition>
+      <router-view></router-view>
+    </transition>
     <!-- Tabbar Section -->
     <nav class="mui-bar mui-bar-tab">
 			<routerLink to="/home" class="mui-tab-item " href="#tabbar">
@@ -20,7 +22,7 @@
 			</routerLink>
 			<routerLink to="/me" class="mui-tab-item" href="#tabbar-with-map">
 				<span class="mui-icon mui-icon-navigate"></span>
-				<span class="mui-tab-labe/l">我的</span>
+				<span class="mui-tab-label">我的</span>
 			</routerLink>
 		</nav>
   </div>
@@ -51,5 +53,19 @@ export default {
 } */
 .app-container{
   padding-top: 40px;
+  overflow-x: hidden;
+}
+.v-enter{
+  opacity: 0;
+  transform: translateX(100%);
+}
+.v-leave-to{
+   opacity: 0;
+  transform: translateX(-100%);
+  position: absolute;
+}
+.v-enter-active,
+.v-leave-active{
+  transition: all 0.5s ease
 }
 </style>
