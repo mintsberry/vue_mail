@@ -3,7 +3,8 @@
     <!-- Header Section -->
     <mt-header fixed title="商店"></mt-header>
     <!-- Router Section -->
-    <transition>
+    <transition :name="transitionName"
+    >
       <router-view></router-view>
     </transition>
     <!-- Tabbar Section -->
@@ -35,10 +36,19 @@
 export default {
   name: 'app',
   data(){
-    return{}
+    return{
+      transitionName:'right'
+    }
   },
   components: {
-  }
+  },
+  watch: {
+    $route(to, from){
+      let arr = ['home','member','shopcar','me']
+      let direct = arr.indexOf(to.name) < arr.indexOf(from.name);
+      this.transitionName = direct ? 'left' : 'right';
+    }
+  },
 }
 </script>
 
@@ -53,19 +63,31 @@ export default {
 } */
 .app-container{
   padding-top: 40px;
+  padding-bottom: 50px;
   overflow-x: hidden;
 }
-.v-enter{
+.right-enter{
   opacity: 0;
   transform: translateX(100%);
 }
-.v-leave-to{
+.right-leave-to{
    opacity: 0;
   transform: translateX(-100%);
   position: absolute;
 }
-.v-enter-active,
-.v-leave-active{
+.left-enter{
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.left-leave-to{
+  opacity: 0;
+  transform: translateX(100%);
+  position: absolute;
+}
+.left-enter-active,
+.left-leave-active,
+.right-enter-active,
+.right-leave-active{
   transition: all 0.5s ease
 }
 </style>

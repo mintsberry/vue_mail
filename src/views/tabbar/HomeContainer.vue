@@ -8,9 +8,9 @@
         </mt-swipe>
         <!-- Grid -->
         <ul class="mui-table-view mui-grid-view mui-grid-9">
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><routerLink to="/home/newsList">
 		                    <span class="mui-icon mui-icon-home"></span>
-		                    <div class="mui-media-body">Home</div></a></li>
+		                    <div class="mui-media-body">Home</div></routerLink></li>
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
 		                    <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
 		                    <div class="mui-media-body">Email</div></a></li>
@@ -33,7 +33,8 @@
 <script>
 import axios from 'axios'
 import { Toast } from 'mint-ui' 
-export default {
+axios.defaults.baseURL = "http://192.168.1.177:8081"
+export default {    
     data(){
         return {
             swipes: []
@@ -41,15 +42,13 @@ export default {
     },
     methods: {
         getSwipes(){
-            console.log("Axios");
-            axios.get('http://localhost:8081/swipe')
+            axios.get('swipe')
             .then(response => {
             // handle success
                 if (response.status == 200){
                     var data = response.data
                     if (data.status == 200){
                         this.swipes = data.data;
-                        console.log(this.swipes);
                     } else {
                         Toast(data.message);
                     }
@@ -59,7 +58,7 @@ export default {
             })
             .catch(function (error) {
             // handle error
-            console.log(error);
+            Toast("图片获取失败");
             })
             .then(function () {
             // always executed

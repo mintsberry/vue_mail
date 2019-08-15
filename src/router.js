@@ -4,6 +4,8 @@ import Home from './views/tabbar/HomeContainer.vue'
 import Search from './views/tabbar/SearchContainer.vue'
 import Member from './views/tabbar/MemberContainer.vue'
 import Shopcar from './views/tabbar/ShopcarContainer.vue'
+import NewsList from './views/news/NewsList.vue'
+import NewsInfo from './views/news/NewsInfo.vue'
 
 Vue.use(Router)
 
@@ -11,7 +13,7 @@ export default new Router({
   routes: [
     {
       path:"/",
-      redirect:"/home"
+      redirect:"/home",
     },
     {
       path: '/home',
@@ -33,6 +35,16 @@ export default new Router({
       name: 'shopcar',
       component: Shopcar
     },
+    {
+      path: '/home/newsList',
+      name: 'newsList',
+      component: NewsList
+    },
+    {
+      path: '/home/newsinfo/:id',
+      name: "newsInfo",
+      component: NewsInfo
+    }
   ],
   linkActiveClass: ' mui-active'
 })
