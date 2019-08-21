@@ -1,25 +1,21 @@
 <template>
     <div>
         <!-- 轮播图 -->
-        <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="(swipe,index) in swipes" :key="index">
-                <img :src="swipe.image">
-            </mt-swipe-item>
-        </mt-swipe>
+        <Swipe :swipes="swipes"></swipe>
         <!-- Grid -->
         <ul class="mui-table-view mui-grid-view mui-grid-9">
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><routerLink to="/home/newsList">
-		                    <span class="mui-icon mui-icon-home"></span>
-		                    <div class="mui-media-body">Home</div></routerLink></li>
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-		                    <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
-		                    <div class="mui-media-body">Email</div></a></li>
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-		                    <span class="mui-icon mui-icon-chatbubble"></span>
-		                    <div class="mui-media-body">Chat</div></a></li>
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+		                    <van-icon class="mui-icon" name="notes-o" />
+		                    <div class="mui-media-body">新闻</div></routerLink></li>
+		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><routerLink to="/home/photosList">
+                            <van-icon class="mui-icon" name="photo-o" />
+		                    <div class="mui-media-body">照片</div></routerLink></li>
+		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><routerLink to="/home/goodsList" href="#">
+		                    <van-icon class="mui-icon" name="shopping-cart-o" />
+		                    <div class="mui-media-body">商品购买</div></routerLink></li>
+		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><routerLink to="/home/goodsList" href="#">
 		                    <span class="mui-icon mui-icon-location"></span>
-		                    <div class="mui-media-body">location</div></a></li>
+		                    <div class="mui-media-body">location</div></routerLink></li>
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
 		                    <span class="mui-icon mui-icon-search"></span>
 		                    <div class="mui-media-body">Search</div></a></li>
@@ -33,8 +29,11 @@
 <script>
 import axios from 'axios'
 import { Toast } from 'mint-ui' 
-axios.defaults.baseURL = "http://192.168.1.177:8081"
-export default {    
+import Swipe from '../../components/Swipe'
+export default {  
+    components:{
+        Swipe
+    },
     data(){
         return {
             swipes: []
@@ -42,7 +41,7 @@ export default {
     },
     methods: {
         getSwipes(){
-            axios.get('swipe')
+            this.$axios.get('swipe')
             .then(response => {
             // handle success
                 if (response.status == 200){

@@ -6,7 +6,9 @@ import Member from './views/tabbar/MemberContainer.vue'
 import Shopcar from './views/tabbar/ShopcarContainer.vue'
 import NewsList from './views/news/NewsList.vue'
 import NewsInfo from './views/news/NewsInfo.vue'
-
+import PhotosList from './views/photos/PhotosList.vue'
+import GoodsList from './views/goods/GoodsList.vue'
+import GoodsInfo from './views/goods/GoodsInfo.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -44,6 +46,21 @@ export default new Router({
       path: '/home/newsinfo/:id',
       name: "newsInfo",
       component: NewsInfo
+    },
+    {
+      path: '/home/photosList',
+      name: "photosList",
+      component: PhotosList
+    },
+    {
+      path: '/home/goodsList',
+      name: "goodsList",
+      component: GoodsList
+    },
+    {
+      path: '/home/goodsInfo/:id',
+      name: "goodsInfo",
+      component: GoodsInfo
     }
   ],
   linkActiveClass: ' mui-active'

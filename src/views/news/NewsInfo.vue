@@ -9,10 +9,12 @@
         <div class="content">
             {{newsinfo.content}}
         </div>
+        <comment-box></comment-box>
     </div>
 </template>
 <script >
 import { Toast } from 'mint-ui' 
+import Comment from '../../components/Comment'
 export default {
     data() {
         return {
@@ -45,6 +47,9 @@ export default {
     created() {
         this.getNewsInfo();
     },
+    components:{
+        'comment-box': Comment
+    }
 }
 </script>
 <style lang="scss" scoped>

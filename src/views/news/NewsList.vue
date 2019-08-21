@@ -15,8 +15,7 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
-axios.defaults.baseURL = "http://192.168.1.177:8081"
+import { Toast } from 'mint-ui' 
 export default {
     data(){
         return{
@@ -28,7 +27,7 @@ export default {
     },
     methods: {
         getNewsList(){
-            axios.get("news").
+            this.$axios.get("news").
             then(response =>{
                 if (response.status == 200){
                     var data = response.data
@@ -40,6 +39,8 @@ export default {
                 } else {
                     Toast("新闻列表获取失败");
                 }
+            }).catch(function (error) {
+                Toast("获取新闻详情失败");
             })
         }
     },
